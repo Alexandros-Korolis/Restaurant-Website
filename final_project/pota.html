@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	
+		<meta charset="utf-8">
+		<title>Final Project</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/jquery-3.6.0.min.js"></script>
+		<script src="js/bootstrap.bundle.min.js"></script>
+		
+	</head>
+	
+	<body>
+	
+	<form>
+		<div class="container">
+			<div class="row">
+				<div class="dropdown mt-5">
+					<button class="btn btn-secondary dropdown-toggle menu opColor" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Menu
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						<button class="dropdown-item" type="button" ><a href="index2.html">Main Page</a></button>
+						<button class="dropdown-item" type="button" ><a href="orektika.html">Appetizers</a></button>
+						<button class="dropdown-item" type="button" ><a href="kurios_piata.html">Main Course</a></button>
+						<button class="dropdown-item" type="button" ><a href="pota.html">Alcohol</a></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-8">
+					<div id="pota">
+						<div class="col-2 mt-5 d-inline-block">
+							<img src="images/rum.jpg" width="50" height="50">
+						</div>
+						<div class="col-4 d-inline-block color-bg text-center">
+							<p class="margin-box"><strong>Dark Rum</strong></p>
+						</div>
+						<div class="col-2 form-outline d-inline-block opColor">
+							<input type="number" id="typeNumber3" class="form-control"></input>						
+						</div>
+						<input type="button" onclick="prosthiki(2)" class="btn btn-info d-inline-block mb-2 opColor buttonStyle" value="Add">
+						
+					</div>
+				</div>
+				<div class="col-4 chroma d-inline-block">
+					<p id="m_order"> </p>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-8">
+				
+				</div>
+				<div class="col-4 mt-3">
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<input class="form-control opColor" id="calc" type="text" value="" aria-label="Disabled input example" readonly>
+					</div>
+					<input type="submit" onclick="order()" class="btn btn-info opColor buttonStyle" value="Order">
+					
+				</div>
+			</div>
+			
+		</div>
+	</form>
+	
+	<script>
+if(sessionStorage.calcul3>0){
+ document.getElementById("calc").value=parseInt(sessionStorage.calcul3); 
+}	
+
+var fagita =[{name:"Carbonara", price:12, currency:"e"}, {name:"Tuna Salad", price:5, currency:"e"}, {name:"Dark Rum",price:5 ,currency:"e"}, {name:"Nachos" ,price:9, currency:"e"}]
+
+
+
+	function prosthiki(i){
+		var i;
+		var posotites=[];
+
+		/*posotites[0]=parseInt(document.getElementById("typeNumber1").value)*/
+		/*posotites[1]=parseInt(document.getElementById("typeNumber2").value)*/
+		  posotites[2]=parseInt(document.getElementById("typeNumber3").value)
+		/*posotites[3]=parseInt(document.getElementById("typeNumber4").value)*/
+		
+		document.getElementById("m_order").innerHTML=document.getElementById("m_order").innerHTML+"<br>"+fagita[i].name +" "+ fagita[i].price +" "+ fagita[i].currency+" "+"Quantity:"+" "+posotites[i];
+		
+		var sunolo=Number(document.getElementById("calc").value)+fagita[i].price*Number(posotites[i]);
+		document.getElementById("calc").value=sunolo;
+		
+		sessionStorage.calcul3=document.getElementById("calc").value;
+		
+	}
+	
+
+	function order(){
+		if (document.getElementById("calc").value>0){
+			var pliromi = document.getElementById("calc").value;
+			alert("Thank you for your order !! Total Price:"+" "+pliromi+" "+"e");
+			document.getElementById("calc").value=0;
+			sessionStorage.calcul3=0;
+		}
+		else {
+			alert("Fail to order !!");
+		}
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	</script>
+	</body>
+</html>
